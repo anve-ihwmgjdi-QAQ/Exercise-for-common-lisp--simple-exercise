@@ -1,13 +1,10 @@
 (load "package-and-global-variable.lisp")
 
-(defun last-pair (list)
-  (if (null (cdr list))
-      list
-      (last-pair (cdr list))))
+
 (defmacro set-last (list value)
   `(if (null ,list)
        (setf ,list (cons ,value ,list))
-       (progn (setf (cdr (last-pair ,list)) ,value) ,list)))
+       (progn (setf (cdr (last ,list)) ,value) ,list)))
 
 
 (defun anve-change-body (args new-args body)
